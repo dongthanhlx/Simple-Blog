@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: black;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+a, p {
+    font-size: 18px;
+}
+
+comment {
+    font-size: 18px;
+}
+li {
+    list-style: none;
+}
+
+button {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: darkslategray;
+    color: whitesmoke;
+    font-size: 18px;
+    margin: 10px 30px;
+    padding: 3px 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.success {
+    color: #5cb85c;
+}
+
+.warning {
+    color: indianred;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#logo {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+}
+
+fieldset {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+    margin: 50px 300px;
+}
+
+legend {
+    font-size: 25px;
+    margin: 20px auto;
+}
+
+input, textarea, select {
+    color: gray;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    background: blanchedalmond;
+}
+
+select {
+    padding: 0 0;
+}
+
+label {
+    font-size: 20px;
+}
+
+#border {
+    border: 1px solid darkslategray;
+    width: 90%;
+    margin: 20px auto;
+}
+
+#side-left {
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    background-color: #e1ffd4;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    padding-top: 30px;
+}
+
+#side-left #email, #description {
+    margin-bottom: 26px;
+}
+
+#side-left h3 {
+    margin-top: 10px;
+}
+
+#side-right {
+    width: 80%;
+    float: right;
+    background-color: white;
+    height: 100%;
+}
+
+#posts {
+    padding: 30px 30px;
+}
+
+#posts div {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+#posts time {
+    font-size: 18px;
+    color: gray;
+}
+
+#posts a {
+    font-size: 26px;
+    color: #ff450a;
+}
+
+ul.admin {
+    padding-right: 30px;
+    margin: 0;
+    float: right;
+}
+
+#post, #tag {
+    width: 960px;
+    margin: 30px auto;
+}
+
+#post h1 {
+    font-size: 36px;
+    padding: 20px 100px;
+}
+
+#post .tag {
+    font-size: 20px;
+}
+
+#add-comment {
+    text-align: center;
+}
+
+article {
+    padding-bottom: 50px;
+}
+
+#comments {
+    margin: 30px;
+}
+
+#add-post h2 {
+    padding-left: 30px;
+}
+
+#add-post #post {
+    width: 150px;
+}
+
+#delete {
+    display: none;
+}
+
+#comment-form {
+    display: none;
+}
