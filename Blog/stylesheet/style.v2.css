@@ -15,6 +15,10 @@ a:hover {
     cursor: pointer;
 }
 
+img:hover, button:hover {
+    cursor: pointer;
+}
+
 h1 {
     font-size: 34px;
 }
@@ -49,9 +53,6 @@ button {
     padding: 3px 10px;
 }
 
-button:hover {
-    cursor: pointer;
-}
 
 .success {
     color: #5cb85c;
@@ -117,7 +118,7 @@ label {
     position: fixed;
     width: 20%;
     height: 100%;
-    background-color: #e1ffd4;
+    background-color: #ffc63e;
     float: left;
     text-align: center;
     line-height: 30px;
@@ -158,13 +159,13 @@ label {
     color: #ff450a;
 }
 
-ul.admin {
+.admin {
     padding-right: 30px;
     margin: 0;
     float: right;
 }
 
-#post, #tag {
+#post, #topic {
     width: 960px;
     margin: 30px auto;
 }
@@ -174,7 +175,7 @@ ul.admin {
     padding: 20px 100px;
 }
 
-#post .tag {
+#post .topic {
     font-size: 20px;
 }
 
@@ -203,5 +204,19 @@ article {
 }
 
 #comment-form {
+    display: none;
+}
+
+#approved {
+    /*float: right;*/
+    /*margin-bottom: 50px;*/
+}
+
+#icon-add {
+    height: 30px;
+    width: 30px;
+}
+
+div#add-topic {
     display: none;
 }

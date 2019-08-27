@@ -1,6 +1,6 @@
 <?php
     require_once (APP_DIR . 'includes/functions.php');
-    require_once (APP_DIR . 'queries/admin_table.php');
+    require_once (APP_DIR . 'queries/user_table.php');
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = array();
@@ -21,8 +21,7 @@
             if (mysqli_num_rows($result) == 0) {
                 $message = "<p class='warning'>You are not admin</p>";
             } else {
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $password;
+                $_SESSION['status'] = 'admin';
                 redirect_to();
             }
         } else {
@@ -39,11 +38,11 @@
             if (!empty($message)) echo $message;
             ?>
             <div class="row">
-                <input id="email" name="email" placeholder="Nhập email"/>
+                <input type="email" id="email" name="email" placeholder="Nhập email"/>
             </div>
 
             <div class="row">
-                <input id="password" name="password" placeholder="Nhập password" />
+                <input type="password" id="password" name="password" placeholder="Nhập password" />
             </div>
 
             <div class="row">

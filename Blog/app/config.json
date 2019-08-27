@@ -3,7 +3,7 @@
     "admin": ["name", "description", "email", "password", "avatar"],
     "categories": ["admin_id", "link", "cat_name"],
     "comments": ["email", "comment", "comment_date", "page_id", "admin_id"],
-    "pages": ["page_name", "content", "post_date", "tag_id", "admin_id"],
-    "tags": ["tag_name"]
+    "pages": ["page_name", "content", "post_date", "topic_id", "admin_id"],
+    "topics": ["topic_name"]
   }
 }

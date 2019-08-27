@@ -1,9 +1,8 @@
 <?php
 session_start();
-
 require_once ('includes/common.php');
 require_once(APP_DIR . 'queries/post_table.php');
-require_once(APP_DIR . 'queries/tag_table.php');
+require_once(APP_DIR . 'queries/topic_table.php');
 require_once(APP_DIR . 'queries/comment_table.php');
 require_once (APP_DIR . 'includes/functions.php');
 
@@ -24,9 +23,9 @@ if (mysqli_num_rows($posts) == 0) {
     $post = mysqli_fetch_array($posts, MYSQLI_ASSOC);
     $post_name = $post['post_name'];
     $content = $post['content'];
-    $tag_id = $post['tag_id'];
-    $tag = mysqli_fetch_array(get_tag_by_id($tag_id), MYSQLI_ASSOC);
-    $tag_name = $tag['tag_name'];
+    $topic_id = $post['topic_id'];
+    $topic = mysqli_fetch_array(get_topic_by_id($topic_id), MYSQLI_ASSOC);
+    $topic_name = $topic['topic_name'];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <?php
 
-        if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
+        if (isAdmin()) {
             echo "
                 <ul class='admin'>
                     <form action=\"\" method=\"post\">
@@ -75,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p><?php echo "$content"; ?></p>
     </div>
 
-    <h3>Tags: <a class='tag' href='tag.php?tid=<?php echo $tag_id; ?>'><?php echo "$tag_name"; ?></a></h3>
+    <h3>Topic: <a class='topic' href='topic.php?tid=<?php echo $topic_id; ?>'><?php echo "$topic_name"; ?></a></h3>
     <div id="border"></div>
     <?php include ('includes/forms/comment_form.php'); ?>
     <div id="comments">

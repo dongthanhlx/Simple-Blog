@@ -1,6 +1,6 @@
 <?php
 require_once (APP_DIR . 'queries/post_table.php');
-require_once (APP_DIR . 'queries/tag_table.php');
+require_once (APP_DIR . 'queries/topic_table.php');
 if (isset($_GET['pid']) && filter_var($_GET['pid'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
     $post_id = $_GET['pid'];
     $result_post = get_post_by_id($post_id);
@@ -8,17 +8,17 @@ if (isset($_GET['pid']) && filter_var($_GET['pid'], FILTER_VALIDATE_INT, array('
     $post = mysqli_fetch_array($result_post, MYSQLI_ASSOC);
     $post_name = $post['post_name'];
     $content = $post['content'];
-    $tag_id_of_post = $post['tag_id'];
+    $topic_id_of_post = $post['topic_id'];
 
-    $all_tag = get_tag_by_id('');
+    $all_topic = get_topic_by_id('');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $new_post_name = mysqli_real_escape_string($dbc, strip_tags($_POST['post_name']));
-    $new_tag_id = $_POST['tag_id'];
+    $new_topic_id = $_POST['topic_id'];
     $new_content = mysqli_real_escape_string($dbc, $_POST['content']);
 
-    $result = update_post($post_id, $new_post_name, $new_content, date('Y:m:d'), $new_tag_id);
+    $result = update_post($post_id, $new_post_name, $new_content, date('Y:m:d'), $new_topic_id);
     if ($result) {
         redirect_to('post.php?pid=' . $post_id);
     }
@@ -35,15 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
             </div>
 
             <div>
-                <label>Tag </label><!--
-                --><select name="tag_id">
+                <label>Topic </label><!--
+                --><select name="topic_id">
                     <?php
-                    if (mysqli_num_rows($all_tag) > 0) {
-                        while ($tag = mysqli_fetch_array($all_tag, MYSQLI_ASSOC)) {
-                            $tag_id = $tag['tag_id'];
-                            $tag_name = $tag['tag_name'];
+                    if (mysqli_num_rows($all_topic) > 0) {
+                        while ($topic = mysqli_fetch_array($all_topic, MYSQLI_ASSOC)) {
+                            $topic_id = $topic['topic_id'];
+                            $topic_name = $topic['topic_name'];
                             ?>
-                            <option value="<?php echo $tag_id;?>" <?php if ($tag_id == $tag_id_of_post) echo "selected";?> ><?php echo $tag_name;?></option>
+                            <option value="<?php echo $topic_id;?>" <?php if ($topic_id == $topic_id_of_post) echo "selected";?> ><?php echo $topic_name;?></option>
                             <?php
                         }
                     }

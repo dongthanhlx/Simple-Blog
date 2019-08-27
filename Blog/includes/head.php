@@ -12,6 +12,34 @@ header("Expires: Sat, 26Jul 1997 05:00:00 GMT");
         <link href="<?php echo APP_DIR . 'stylesheet/style.v2.css'?>" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="<?php echo APP_DIR . 'js/script.js' ?>">
         </script>
+        <script>
+            var warningTimer;
+            var timeoutTimer;
+
+            // Start warning timer.
+            function startAutoLogoutTimer() {
+                warningTimer = setTimeout("autoLogoutIdleWarning()", 2);
+            }
+
+            // Reset timers.
+            function resetAutoLogoutTimer() {
+                window.location = '#';
+                clearTimeout(timeoutTimer);
+                startAutoLogoutTimer();
+            }
+
+            // Show idle timeout warning dialog.
+            function autoLogoutIdleWarning() {
+                clearTimeout(warningTimer);
+                timeoutTimer = setTimeout("AutoLogoutIdleTimeout()", 1);
+                alert("-------------");
+            }
+
+            // Logout the user.
+            function AutoLogoutIdleTimeout() {
+                window.location = 'loggedout.html';
+            }
+        </script>
     </head>
 
     <body>

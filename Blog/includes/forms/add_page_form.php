@@ -1,22 +1,29 @@
 <?php
-require_once (APP_DIR . 'queries/tag_table.php');
+require_once (APP_DIR . 'queries/topic_table.php');
 require_once (APP_DIR . 'queries/post_table.php');
-$tags = get_tag_by_id('');
+require_once (APP_DIR . 'queries/user_table.php');
+require_once (APP_DIR . 'includes/functions.php');
+$topics = get_topic_by_id('');
 ?>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
     $errors = array();
+
+    if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $email = $_POST['email'];
+    }
+
     if (empty($_POST['post_name'])) {
         $errors[] = 'post name';
     } else {
         $post_name = mysqli_real_escape_string($dbc,strip_tags($_POST['post_name']));
     }
 
-    if (isset($_POST['tag']) && filter_var($_POST['tag'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
-        $tag_id = $_POST['tag'];
+    if (isset($_POST['topic']) && filter_var($_POST['topic'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
+        $topic_id = $_POST['topic'];
     } else {
-        $errors[] = 'tag';
+        $errors[] = 'topic';
     }
 
     if (empty($_POST['content'])) {
@@ -26,7 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
     }
 
     if (empty($errors)) {
-        $result = insert_post($post_name, $content, date('Y-m-d'), $tag_id);
+
+        if (isAdmin()) {
+            $status = 'approved';
+            $user_id = 1;
+        } else {
+            $tmp_id = mysqli_num_rows(check_email($email));
+            $status = 'not approved';
+
+            if ($tmp_id > 0) {
+                $user_id = $tmp_id;
+            } else {
+                add_user('', '', $email, '', '');
+                $user_id = mysqli_num_rows(get_user());
+            }
+        }
+
+        $result = insert_post($post_name, $content, date('Y-m-d'), $topic_id, $user_id, $status);
         if ($result == 1) {
             $message_post = "<p class='success'>The post was added successfully</p>";
         } else {
@@ -35,22 +58,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
     } else {
         $message_post = "<p class='warning'>Please fill in all the required fields</p>";
     }
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_tag'])) {
-    $flag_add_tag = TRUE;
-    if (!empty($_POST['tag_name'])) {
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_topic'])) {
 
-        $result = check_tag_name($_POST['tag_name']);
-        $is_existed_tag_name = (mysqli_num_rows($result) >= 1) ;
+    if (!empty($_POST['topic_name'])) {
 
-        if ($is_existed_tag_name) {
-            $message_tag = "<p class='warning'>Tag đã tồn tại </p>";
+        $result = check_topic_name($_POST['topic_name']);
+        $is_existed_topic_name = (mysqli_num_rows($result) >= 1) ;
+
+        if ($is_existed_topic_name) {
+            $message_topic = "<p class='warning'>Tag đã tồn tại </p>";
         } else {
-            insert_tag(mysqli_real_escape_string($dbc, strip_tags($_POST['tag_name'])));
-            $message_tag = "<p class='success'>Tag đã đươc thêm thành công </p>";
+            insert_topic(mysqli_real_escape_string($dbc, strip_tags($_POST['topic_name'])));
+            $message_topic = "<p class='success'>Tag đã đươc thêm thành công </p>";
         }
 
     } else {
-        $errors[] = 'tag name';
+        $errors[] = 'topic name';
     }
 }
 ?>
@@ -64,9 +87,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
             if (isset($message_post)) {
                 echo $message_post;
             }
+            if (!isAdmin()) {
+                echo "<div class='row'>";
+                echo "
+                <label>Email</label>
+                <input type='email' name='email' "; if (!empty($errors) && !in_array('email', $errors) && isset($email)) echo "value='$email'"; echo "/>";
+
+                echo "</div>";
+            }
+            if (isset($errors) && in_array('email', $errors)) {
+                echo "<p class='warning'>Please fill in a email</p>";
+            }
             ?>
+
             <div class="row">
-                <label>Post Name</label>
+                <label><br />Post Name</label>
 
                 <?php
                 if (isset($errors) && in_array('post name', $errors)) {
@@ -79,37 +114,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
             </div>
 
             <div class="row">
-                <label>Select tag</label>
+                <label>Select topic</label>
 
                 <?php
-                if (isset($errors) && in_array('tag', $errors)) {
-                    echo "<p class='warning'>Please pick a tag</p>";
+                if (isset($errors) && in_array('topic', $errors)) {
+                    echo "<p class='warning'>Please pick a topic</p>";
                 }
                 ?>
 
-                <select name="tag">
+                <select name="topic">
                     <?php
-                    $tags = get_tag_by_id('');
-                    if (mysqli_num_rows($tags) > 0) {
-                        while ($tag = mysqli_fetch_array($tags)) {
-                            $tag_id = $tag['tag_id'];
-                            $tag_name = $tag['tag_name'];
-                            echo "<option value='$tag_id'>$tag_name</option>";
+                    $topics = get_topic_by_id('');
+                    if (mysqli_num_rows($topics) > 0) {
+                        while ($topic = mysqli_fetch_array($topics)) {
+                            $topic_id = $topic['topic_id'];
+                            $topic_name = $topic['topic_name'];
+                            echo "<option value='$topic_id'>$topic_name</option>";
                         }
                     }
                     ?>
-                </select><!--
-                --><form action="" method="post">
-                    <button type="submit" name="add_tag">Thêm tag</button>
-                    <?php
-                    if (isset($flag_add_tag) && $flag_add_tag == TRUE) {
-                        echo "
-                            <input type='text' name='tag_name' placeholder='Điền tag vào đây'/>
-                            ";
-                        if (isset($is_existed_tag_name)) echo $message_tag;
-                    }
-                    ?>
-                </form>
+                </select>
+                <img onclick="displayAddTopic()" id='icon-add' src="<?php echo APP_DIR . 'images/add-icon.png'; ?>" alt="icon-add" />
+                <div id="add-topic">
+                    <form action="" method="post">
+                        <button type="submit" name="add_topic">Thêm topic</button>
+                        <input type='text' name='topic_name' placeholder='Điền topic vào đây'/>
+                    </form>
+                </div>
+                <?php
+                    if (isset($message_topic)) echo $message_topic;
+                ?>
             </div>
 
             <div class="row">

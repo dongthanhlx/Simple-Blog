@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once ('includes/common.php');
 require_once (APP_DIR . 'includes/functions.php');
-session_start();
+unset($_SESSION['status']);
 $_SESSION = array();
 session_destroy();
 

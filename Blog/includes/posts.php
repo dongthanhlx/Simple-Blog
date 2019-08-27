@@ -1,7 +1,19 @@
 <?php
     require_once(APP_DIR . '/queries/post_table.php');
-    require_once(APP_DIR . '/queries/tag_table.php');
+    require_once(APP_DIR . '/queries/topic_table.php');
+    require_once (APP_DIR . 'includes/functions.php');
     if (!isset($posts)) $posts = get_post_by_id('');
+?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['approved'])) {
+        approved($_POST['approved']);
+    } elseif (isset($_POST['not-approved'])) {
+        delete_post($_POST['not-approved']);
+    }
+    redirect_to();
+}
 ?>
 
 <section id="posts">
@@ -11,16 +23,31 @@
             $post_name = $post['post_name'];
             $post_date = $post['post_date'];
             $post_id = $post['post_id'];
+            $status = $post['status'];
 
-            $tag_id = $post['tag_id'];
-            $tag = mysqli_fetch_array(get_tag_by_id($tag_id), MYSQLI_ASSOC);
-            $tag_name = $tag['tag_name'];
+            $topic_id = $post['topic_id'];
+            $topic = mysqli_fetch_array(get_topic_by_id($topic_id), MYSQLI_ASSOC);
+            $topic_name = $topic['topic_name'];
 
-            echo "<div class='post'>"
-                    . "<time>{$post_date}</time> {$tag_name}"
+            if (isAdmin()) {
+                echo "<div class='post'>"
+                    . "<time>{$post_date}</time> {$topic_name}"
+                    . "<h3 class='post-name'><a href='post.php?pid={$post_id}'>$post_name</a></h3>";
+                if ($status == 'not approved') {
+                    echo "
+                        <form action='' method='post' id='approved'>
+                            <button type='submit' name='approved' value='$post_id'>Duyệt </button>
+                            <button type='submit' name='not-approved' value='$post_id'>Xóa bài</button>
+                        </form>
+                    ";
+                }
+                echo "</div><!--End .post-->";
+            } elseif ($status == 'approved') {
+                echo "<div class='post'>"
+                    . "<time>{$post_date}</time> {$topic_name}"
                     . "<h3 class='post-name'><a href='post.php?pid={$post_id}'>$post_name</a></h3>"
-                . "</div><!--End .post-->";
-
+                    . "</div><!--End .post-->";
+            }
         }
     }
     ?>

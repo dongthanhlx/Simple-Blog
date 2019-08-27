@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             <legend>Comment</legend>
             <?php if (!empty($message)) echo $message; ?>
             <div class="email">
-                <input type="text" class="input" name="email" placeholder="Email gõ vào đây"/>
+                <input type="email" class="input" name="email" placeholder="Email gõ vào đây"/>
                 <?php
                 if (!empty($errors) && in_array('email', $errors)) {
                     echo "<p class='warning'>Email bạn nhập không đúng</p>";
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 ?>
             </div>
             <div class="comment">
-                <input placeholder="Comment gõ vào đây" name="comment" />
+                <input placeholder="Comment gõ vào đây" name="comment" type="text"/>
                 <?php
                 if (!empty($errors) && in_array('comment', $errors)) {
                     echo "<p class='warning'>Hãy viết comment</p>";
                 }
                 ?>
             </div>
-            <button type="submit" name="submit">Submit</button>
+            <button type="submit" name="submit" onclick="joinComment()">Submit</button>
         </fieldset>
     </form>
 </div>
