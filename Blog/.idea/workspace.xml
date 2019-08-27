@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56e6103f-bfc6-4f07-bb10-a91e9a85db2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/add/add_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/add/add_category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/add/add_post.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/edit/edit_tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/edit/edit_topic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/author_information.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/author_information.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/forms/add_page_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/forms/add_page_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/forms/comment_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/forms/comment_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/forms/edit_post_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/forms/edit_post_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/forms/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/forms/login_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/head.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/posts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/side_right.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/side_right.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries/admin_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/queries/user_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries/post_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/queries/post_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queries/tag_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/queries/topic_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stylesheet/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stylesheet/style.v2.css" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheet/style.v2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/topic.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,8 +107,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="551">
-                  <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+                <state relative-caret-position="247">
+                  <caret line="13" selection-start-line="13" selection-end-line="13" />
                 </state>
               </provider>
             </entry>
@@ -247,10 +223,10 @@
         <option value="$PROJECT_DIR$/includes/functions.php" />
         <option value="$PROJECT_DIR$/includes/head.php" />
         <option value="$PROJECT_DIR$/stylesheet/style.v2.css" />
-        <option value="$PROJECT_DIR$/js/script.js" />
         <option value="$PROJECT_DIR$/post.php" />
         <option value="$PROJECT_DIR$/includes/forms/comment_form.php" />
         <option value="$PROJECT_DIR$/includes/forms/add_page_form.php" />
+        <option value="$PROJECT_DIR$/js/script.js" />
       </list>
     </option>
   </component>
@@ -403,12 +379,12 @@
       <updated>1566097491500</updated>
       <workItem from="1566097492721" duration="129214000" />
       <workItem from="1566575543885" duration="50851000" />
-      <workItem from="1566814326441" duration="28824000" />
+      <workItem from="1566814326441" duration="29429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208889000" />
+    <option name="totallyTimeSpent" value="209494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -739,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/forms/comment_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -757,6 +726,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="144" column="44" selection-start-line="144" selection-start-column="44" selection-end-line="144" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>

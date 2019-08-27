@@ -12,10 +12,6 @@ function joinComment() {
     }
 }
 
-function submitFailed() {
-    count++;
-    joinComment();
-}
 
 function isDelete() {
     document.getElementById("delete").style.display = 'block';
