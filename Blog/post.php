@@ -43,11 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <article id="post">
-
     <h1><?php echo "$post_name"; ?></h1>
 
         <?php
-
         if (isAdmin()) {
             echo "
                 <ul class='admin'>
@@ -59,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ";
         }
         ?>
-
 
     <form action='' method='post' id="delete">
         <fieldset>
@@ -76,7 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <h3>Topic: <a class='topic' href='topic.php?tid=<?php echo $topic_id; ?>'><?php echo "$topic_name"; ?></a></h3>
     <div id="border"></div>
+
     <?php include ('includes/forms/comment_form.php'); ?>
+
     <div id="comments">
         <?php
         $comments = get_comments_by_page_id($post_id);
@@ -95,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
     </div>
 </article>
-
 <?php
 include ('includes/footer.php');
 ?>

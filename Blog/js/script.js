@@ -12,7 +12,6 @@ function joinComment() {
     }
 }
 
-
 function isDelete() {
     document.getElementById("delete").style.display = 'block';
 }

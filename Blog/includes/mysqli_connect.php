@@ -6,5 +6,3 @@ if (!$dbc) {
 } else {
     $dbc->set_charset("utf8");
 }
-
-?>

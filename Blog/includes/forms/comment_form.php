@@ -4,16 +4,15 @@ if(isset($_GET['pid']) && filter_var($_GET['pid'], FILTER_VALIDATE_INT, array('m
     $page_id = $_GET['pid'];
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-    echo '
-        <script>
-            document.getElementById("comment-form").style.display = \'block\';
-        </script>
-    ';
     $errors = array();
     if (!empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $email = mysqli_real_escape_string($dbc, strip_tags($_POST['email']));
     } else {
-        $errors[] = 'email';
+        if (isAdmin()) {
+            $email = 'admin';
+        } else {
+            $errors[] = 'email';
+        }
     }
 
     if (!empty($_POST['comment'])) {
@@ -37,14 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         <fieldset>
             <legend>Comment</legend>
             <?php if (!empty($message)) echo $message; ?>
-            <div class="email">
-                <input type="email" class="input" name="email" placeholder="Email gõ vào đây"/>
-                <?php
-                if (!empty($errors) && in_array('email', $errors)) {
-                    echo "<p class='warning'>Email bạn nhập không đúng</p>";
-                }
-                ?>
-            </div>
+            <?php
+            if (!isAdmin()) {
+            ?>
+                <div class="email">
+                    <input type="email" class="input" name="email" placeholder="Email gõ vào đây"/>
+                    <?php
+                    if (!empty($errors) && in_array('email', $errors)) {
+                        echo "<p class='warning'>Email bạn nhập không đúng</p>";
+                    }
+                    ?>
+                </div>
+            <?php
+            }
+            ?>
+
             <div class="comment">
                 <input placeholder="Comment gõ vào đây" name="comment" type="text"/>
                 <?php

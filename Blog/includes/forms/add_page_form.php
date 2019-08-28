@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
     }
 
     if (empty($errors)) {
-
         if (isAdmin()) {
             $status = 'approved';
             $user_id = 1;
@@ -48,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
                 $user_id = mysqli_num_rows(get_user());
             }
         }
-
         $result = insert_post($post_name, $content, date('Y-m-d'), $topic_id, $user_id, $status);
         if ($result == 1) {
             $message_post = "<p class='success'>The post was added successfully</p>";
@@ -59,9 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
         $message_post = "<p class='warning'>Please fill in all the required fields</p>";
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_topic'])) {
-
     if (!empty($_POST['topic_name'])) {
-
         $result = check_topic_name($_POST['topic_name']);
         $is_existed_topic_name = (mysqli_num_rows($result) >= 1) ;
 
@@ -71,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
             insert_topic(mysqli_real_escape_string($dbc, strip_tags($_POST['topic_name'])));
             $message_topic = "<p class='success'>Tag đã đươc thêm thành công </p>";
         }
-
     } else {
         $errors[] = 'topic name';
     }
@@ -92,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
                 echo "
                 <label>Email</label>
                 <input type='email' name='email' "; if (!empty($errors) && !in_array('email', $errors) && isset($email)) echo "value='$email'"; echo "/>";
-
                 echo "</div>";
             }
             if (isset($errors) && in_array('email', $errors)) {
@@ -110,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post'])) {
                 ?>
 
                 <input type="text" name="post_name" <?php if (!empty($errors) && !in_array('post name', $errors) &&  isset($post_name)) echo " value='$post_name'"; ?>/>
-
             </div>
 
             <div class="row">
