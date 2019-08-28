@@ -1,4 +1,4 @@
-<div id="side-right">
+<div id="right-side">
     <?php
         require_once (APP_DIR . "includes/functions.php");
         if (isAdmin()) {

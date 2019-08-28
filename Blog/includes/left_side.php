@@ -1,4 +1,4 @@
-<section id="side-left">
+<section id="left-side">
     <?php
         include ('author_information.php');
         echo "<div id='border'></div>";
