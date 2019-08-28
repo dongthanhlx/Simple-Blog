@@ -22,6 +22,7 @@
         ";
 
         $result = mysqli_query($dbc, $query);
+        mysqli_close();
         confirm_query($result, $query);
     }
 

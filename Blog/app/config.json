@@ -1,4 +1,11 @@
 {
+  "mysqli_connect": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "Blog",
+    "port": 3307
+  },
   "mysqli_table": {
     "admin": ["name", "description", "email", "password", "avatar"],
     "categories": ["admin_id", "link", "cat_name"],
